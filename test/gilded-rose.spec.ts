@@ -90,6 +90,20 @@ describe('Gilded Rose', function () {
         expect(items[0].quality).to.equal(18);
     });
 
+    it('Conjured Items quality degrading twice as fast, sellIn pozitive', function() {
+        const gildedRose = new GildedRose([ new Item('Conjured Mana Cake', 7, 10) ]);
+        let items = gildedRose.updateQuality();
+        expect(items[0].name).to.equal('Conjured Mana Cake');
+        expect(items[0].sellIn).to.equal(6);
+        expect(items[0].quality).to.equal(8);
+    });
 
+    it('Conjured Items quality degrading twice as fast, sellIn negative', function() {
+        const gildedRose = new GildedRose([ new Item('Conjured Mana Cake', 0, 10) ]);
+        let items = gildedRose.updateQuality();
+        expect(items[0].name).to.equal('Conjured Mana Cake');
+        expect(items[0].sellIn).to.equal(-1);
+        expect(items[0].quality).to.equal(6);
+    });
 
 });
